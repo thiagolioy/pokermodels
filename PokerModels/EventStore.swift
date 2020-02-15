@@ -20,47 +20,49 @@ public struct EventStore {
         )
     }
     
-    func playerDidLose(player: Player, on event: Event) -> Event {
+    private func update(event: Event, player: Player, status: EventPlayer.Status) -> Event {
         
         let otherPlayers = event.players.filter { $0.player != player }
-        var activePlayers = otherPlayers.filter { $0.status == .active}
+        let activePlayers = otherPlayers.filter { $0.status == .active}
         
-        let loserPosition = activePlayers.count + 1
+        
+        var position: EventPlayer.PlayerPosition = .notSetted
+        if status == .lost {
+            position = .setted(activePlayers.count + 1)
+        } else if status == .won {
+            position = .setted(1)
+        }
         
         let changes = [
-            EventPlayer(status: .lost, player: player, position: .setted(loserPosition))
+            EventPlayer(status: status, player: player, position: position)
         ]
-       
+        
         let updatedPlayers = otherPlayers + changes
         
-        let updatedEvent = Event(
+        return Event(
             name: event.name,
             location: event.location,
             date: event.date,
             players: updatedPlayers,
             actions: event.actions
         )
+    }
+    
+    
+    func playerDidLose(player: Player, on event: Event) -> Event {
         
-        activePlayers = updatedEvent.players.filter {$0.status == .active}
+        let updatedEvent = update(event: event, player: player, status: .lost)
         
-        if activePlayers.count > 1 {
+        let activePlayers = updatedEvent.players.filter {$0.status == .active}
+        
+        guard activePlayers.count == 1 else {
             return updatedEvent
         }
         
         let lastActive = activePlayers[0].player
         
-        let winner = EventPlayer(status: .won, player: lastActive, position: .setted(1))
         
-        let losers = updatedEvent.players.filter { $0.status == .lost }
-        
-        return  Event(
-           name: event.name,
-           location: event.location,
-           date: event.date,
-           players: losers + [winner],
-           actions: event.actions
-       )
-        
+        return update(event: updatedEvent, player: lastActive, status: .won)
     }
     
     
