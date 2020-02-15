@@ -29,6 +29,7 @@ public func ==(lhs: Event, rhs: Event) -> Bool {
 }
 
 extension Event {
+    
     var losers: [EventPlayer] {
         return players.filter { $0.status == .lost }
     }
@@ -40,4 +41,28 @@ extension Event {
     var rank: [EventPlayer] {
         return players.sorted { $0.position > $1.position}
     }
+}
+
+extension Event {
+    func position(for player: Player) -> Position {
+        guard let position = players.filter({ $0.player == player }).first?.position else {
+            return .notSetted
+        }
+        return position
+    }
+    
+    func points(for player: Player) -> Points {
+        guard let points = players.filter({ $0.player == player }).first?.points else {
+            return .notSetted
+        }
+        return points
+    }
+    
+    func prizePercentage(for player: Player) -> PrizePercentage {
+        guard let percentage = players.filter({ $0.player == player }).first?.prizePercentage else {
+            return .notSetted
+        }
+        return percentage
+    }
+    
 }

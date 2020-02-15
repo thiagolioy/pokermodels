@@ -145,6 +145,46 @@ class EventStoreTests: XCTestCase {
         XCTAssertEqual(ev.players.count, 7)
     }
     
+    func testShouldBeAbleToGetPlayerPoints() {
+        let p1 = event.players[0].player
+        let p3 = event.players[2].player
+        let newEvent = sut.playerDidLose(player: p1, on: event)
+      
+        
+        let points: Points = newEvent.points(for: p1)
+        XCTAssertEqual(points, .setted(6))
+        
+        let notSettedPoints: Points = newEvent.points(for: p3)
+        XCTAssertEqual(notSettedPoints, .notSetted)
+    }
+    
+    func testShouldBeAbleToGetPlayerPrizePercentage() {
+           let p1 = event.players[0].player
+           let p3 = event.players[2].player
+           let newEvent = sut.playerDidLose(player: p1, on: event)
+         
+           
+           let points: PrizePercentage = newEvent.prizePercentage(for: p1)
+           XCTAssertEqual(points, .setted(0.0))
+           
+           let notSettedPoints: PrizePercentage = newEvent.prizePercentage(for: p3)
+           XCTAssertEqual(notSettedPoints, .notSetted)
+    }
+    
+    func testShouldBeAbleToGetPlayerPosition() {
+           let p1 = event.players[0].player
+           let p3 = event.players[2].player
+           let newEvent = sut.playerDidLose(player: p1, on: event)
+         
+           
+           let points: Position = newEvent.position(for: p1)
+           XCTAssertEqual(points, .setted(7))
+           
+           let notSettedPoints: Position = newEvent.position(for: p3)
+           XCTAssertEqual(notSettedPoints, .notSetted)
+       }
+    
+    
     func testShouldBeAbleToListTheLosers() {
         let p1 = event.players[0].player
         let p2 = event.players[1].player
@@ -175,5 +215,8 @@ class EventStoreTests: XCTestCase {
         XCTAssertEqual(newEvent.players.count, 7)
     }
     
+    func testShouldBeAbleToGetPrizePool() {
+          XCTFail()
+      }
     
 }
