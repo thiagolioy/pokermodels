@@ -10,12 +10,14 @@ import Foundation
 
 public struct EventAction {
     let event: Event
-    let action: PlayerAction
+    let player: Player
+    let pokerAction: PokerAction
 }
 
 extension EventAction: Equatable {}
 
 public func ==(lhs: EventAction, rhs: EventAction) -> Bool {
     return lhs.event == rhs.event &&
-        lhs.action == rhs.action
+        lhs.player == rhs.player &&
+        lhs.pokerAction == rhs.pokerAction
 }

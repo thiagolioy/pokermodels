@@ -11,8 +11,10 @@ import XCTest
 
 class PlayerTests: XCTestCase {
 
+  
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
     }
 
     override func tearDown() {
@@ -20,12 +22,11 @@ class PlayerTests: XCTestCase {
     }
 
     func testEquality() {
-        let player = Player(name: "Thiago Lioy")
-        let player2 = Player(name: "Thiago Lioy")
+        let p1 = Player(name: "Thiago")
+        let p2 = Player(name: "Thiago")
         
-        XCTAssertEqual(player, player2)
+        XCTAssertEqual(p1, p2)
     }
-
-
+    
 }
 
