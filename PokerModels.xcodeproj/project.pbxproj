@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0AB70CF523F84FFD00CB093A /* PokerModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB70CEB23F84FFD00CB093A /* PokerModels.framework */; };
-		0AB70CFA23F84FFD00CB093A /* PokerModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70CF923F84FFD00CB093A /* PokerModelsTests.swift */; };
 		0AB70CFC23F84FFD00CB093A /* PokerModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB70CEE23F84FFD00CB093A /* PokerModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0AB70D0623F8506500CB093A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0523F8506500CB093A /* Player.swift */; };
+		0AB70D0823F8509500CB093A /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0723F8509500CB093A /* PlayerTests.swift */; };
+		0AB70D0A23F8528500CB093A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0923F8528500CB093A /* Event.swift */; };
+		0AB70D0C23F8528F00CB093A /* EventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0B23F8528F00CB093A /* EventAction.swift */; };
+		0AB70D0E23F852A400CB093A /* PlayerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0D23F852A400CB093A /* PlayerAction.swift */; };
+		0AB70D1023F852B200CB093A /* PokerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0F23F852B200CB093A /* PokerAction.swift */; };
+		0AB70D1223F852E700CB093A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1123F852E700CB093A /* Location.swift */; };
+		0AB70D1423F8530200CB093A /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1323F8530200CB093A /* Championship.swift */; };
+		0AB70D1623F854A000CB093A /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1523F854A000CB093A /* EventTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +35,16 @@
 		0AB70CEE23F84FFD00CB093A /* PokerModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokerModels.h; sourceTree = "<group>"; };
 		0AB70CEF23F84FFD00CB093A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AB70CF423F84FFD00CB093A /* PokerModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerModelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AB70CF923F84FFD00CB093A /* PokerModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerModelsTests.swift; sourceTree = "<group>"; };
 		0AB70CFB23F84FFD00CB093A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AB70D0523F8506500CB093A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0AB70D0723F8509500CB093A /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		0AB70D0923F8528500CB093A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0AB70D0B23F8528F00CB093A /* EventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAction.swift; sourceTree = "<group>"; };
+		0AB70D0D23F852A400CB093A /* PlayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAction.swift; sourceTree = "<group>"; };
+		0AB70D0F23F852B200CB093A /* PokerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerAction.swift; sourceTree = "<group>"; };
+		0AB70D1123F852E700CB093A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		0AB70D1323F8530200CB093A /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
+		0AB70D1523F854A000CB093A /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +89,13 @@
 			children = (
 				0AB70CEE23F84FFD00CB093A /* PokerModels.h */,
 				0AB70CEF23F84FFD00CB093A /* Info.plist */,
+				0AB70D0523F8506500CB093A /* Player.swift */,
+				0AB70D0923F8528500CB093A /* Event.swift */,
+				0AB70D0B23F8528F00CB093A /* EventAction.swift */,
+				0AB70D0D23F852A400CB093A /* PlayerAction.swift */,
+				0AB70D0F23F852B200CB093A /* PokerAction.swift */,
+				0AB70D1123F852E700CB093A /* Location.swift */,
+				0AB70D1323F8530200CB093A /* Championship.swift */,
 			);
 			path = PokerModels;
 			sourceTree = "<group>";
@@ -80,8 +103,9 @@
 		0AB70CF823F84FFD00CB093A /* PokerModelsTests */ = {
 			isa = PBXGroup;
 			children = (
-				0AB70CF923F84FFD00CB093A /* PokerModelsTests.swift */,
 				0AB70CFB23F84FFD00CB093A /* Info.plist */,
+				0AB70D0723F8509500CB093A /* PlayerTests.swift */,
+				0AB70D1523F854A000CB093A /* EventTests.swift */,
 			);
 			path = PokerModelsTests;
 			sourceTree = "<group>";
@@ -148,6 +172,7 @@
 				TargetAttributes = {
 					0AB70CEA23F84FFD00CB093A = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					0AB70CF323F84FFD00CB093A = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -195,6 +220,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AB70D0E23F852A400CB093A /* PlayerAction.swift in Sources */,
+				0AB70D1023F852B200CB093A /* PokerAction.swift in Sources */,
+				0AB70D0C23F8528F00CB093A /* EventAction.swift in Sources */,
+				0AB70D0A23F8528500CB093A /* Event.swift in Sources */,
+				0AB70D1423F8530200CB093A /* Championship.swift in Sources */,
+				0AB70D1223F852E700CB093A /* Location.swift in Sources */,
+				0AB70D0623F8506500CB093A /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +234,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AB70CFA23F84FFD00CB093A /* PokerModelsTests.swift in Sources */,
+				0AB70D1623F854A000CB093A /* EventTests.swift in Sources */,
+				0AB70D0823F8509500CB093A /* PlayerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +373,7 @@
 		0AB70D0023F84FFD00CB093A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = J5P786SDN2;
@@ -356,14 +390,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tplioy.PokerModels;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		0AB70D0123F84FFD00CB093A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = J5P786SDN2;
@@ -380,14 +417,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tplioy.PokerModels;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		0AB70D0323F84FFD00CB093A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J5P786SDN2;
 				INFOPLIST_FILE = PokerModelsTests/Info.plist;
@@ -406,6 +445,7 @@
 		0AB70D0423F84FFD00CB093A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J5P786SDN2;
 				INFOPLIST_FILE = PokerModelsTests/Info.plist;
