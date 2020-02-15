@@ -8,17 +8,31 @@
 
 import Foundation
 
+
+typealias Position = Setted<Int>
+typealias Points = Setted<Int>
+typealias PrizePercentage = Setted<Double>
+
 public struct EventPlayer {
     enum Status {
         case won, active, lost
     }
-    enum PlayerPosition {
-        case setted(Int)
-        case notSetted
-    }
+    
     let status: Status
     let player: Player
-    let position: PlayerPosition
+    let position: Position
+    let points: Points
+    let prizePercentage: PrizePercentage
+}
+
+extension EventPlayer {
+    init(player: Player) {
+        status = .active
+        self.player = player
+        position = .notSetted
+        points = .notSetted
+        prizePercentage = .notSetted
+    }
 }
 
 extension EventPlayer: Equatable {}
@@ -26,29 +40,6 @@ extension EventPlayer: Equatable {}
 public func ==(lhs: EventPlayer, rhs: EventPlayer) -> Bool {
     return lhs.status == rhs.status &&
         lhs.player == rhs.player &&
-        lhs.position == rhs.position
+        lhs.position == rhs.position &&
+        lhs.points == rhs.points
 }
-
-extension EventPlayer.PlayerPosition: Equatable {}
-
-extension EventPlayer.PlayerPosition: Comparable {}
-
-fileprivate extension EventPlayer.PlayerPosition {
-    func position() -> Int? {
-        switch self {
-        case .setted(let pos):
-            return pos
-        case .notSetted:
-            return nil
-        }
-    }
-}
-
-func < (lhs: EventPlayer.PlayerPosition, rhs: EventPlayer.PlayerPosition) -> Bool {
-    guard let lp = lhs.position(), let rp = rhs.position() else {
-        return false
-    }
-    return lp < rp
-}
-
-

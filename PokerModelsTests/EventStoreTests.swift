@@ -25,15 +25,15 @@ class EventStoreTests: XCTestCase {
         
         let players = [p1, p2, p3, p4, p5, p6, p7]
         
-        let house = Location(address: "Avenida Santo Amaro 3131",
-                             complement: "Apt. 1905",
+        let house = Location(address: "Avenida Santo 20",
+                             complement: "Apt. 15",
                              coordinate: nil)
         
         event = Event(
             name: "Thiago's Poker",
             location: house,
             date: Date(),
-            players: players.map{EventPlayer(status: .active, player: $0, position: .notSetted)},
+            players: players.map{EventPlayer(player: $0)},
             actions: []
         )
         sut = EventStore()
@@ -62,10 +62,25 @@ class EventStoreTests: XCTestCase {
         XCTAssertEqual(newEvent.losers.count, 1)
         
         let losers = [
-            EventPlayer(status: .lost, player: p1, position: .setted(7))
+            EventPlayer(status: .lost,
+                        player: p1,
+                        position: .setted(7),
+                        points: .setted(event.pointsSystem.points(for: 7)),
+                        prizePercentage: .setted(event.prizeSystem.prizePercentage(for: 7))
+                
+            )
         ]
         
         XCTAssertEqual(newEvent.losers, losers)
+    }
+    
+    func testShouldBeAbleToRankThePlayersWithoutAWinner() {
+        let p1 = event.players[0].player
+        let newEvent = sut.playerDidLose(player: p1, on: event)
+        
+        XCTAssertEqual(newEvent.losers.count, 1)
+        
+        XCTAssertEqual(newEvent.rank.count, 7)
     }
     
     func testShouldBeAbleToRankThePlayersWithAWinner() {
@@ -79,19 +94,19 @@ class EventStoreTests: XCTestCase {
         
         let players = [p1, p2, p3, p4, p5, p6, p7]
         
-        let house = Location(address: "Avenida Santo Amaro 3131",
-                             complement: "Apt. 1905",
-                             coordinate: nil)
+        let house = Location(address: "Avenida Santo 20",
+        complement: "Apt. 15",
+        coordinate: nil)
         
         event = Event(
             name: "Thiago's Poker",
             location: house,
             date: Date(),
-            players: players.map{EventPlayer(status: .active, player: $0, position: .notSetted)},
+            players: players.map{EventPlayer(player: $0)},
             actions: []
         )
         
-       
+        
         var ev = sut.playerDidLose(player: p2, on: event)
         ev = sut.playerDidLose(player: p3, on: ev)
         ev = sut.playerDidLose(player: p4, on: ev)
@@ -101,13 +116,13 @@ class EventStoreTests: XCTestCase {
         
         
         let expectedRank = [
-            EventPlayer(status: .lost, player: p2, position: .setted(7)),
-            EventPlayer(status: .lost, player: p3, position: .setted(6)),
-            EventPlayer(status: .lost, player: p4, position: .setted(5)),
-            EventPlayer(status: .lost, player: p5, position: .setted(4)),
-            EventPlayer(status: .lost, player: p6, position: .setted(3)),
-            EventPlayer(status: .lost, player: p7, position: .setted(2)),
-            EventPlayer(status: .won, player: p1, position: .setted(1))
+            EventPlayer(status: .lost, player: p2, position: .setted(7), points: .setted(6), prizePercentage: .setted(0)),
+            EventPlayer(status: .lost, player: p3, position: .setted(6), points: .setted(8), prizePercentage: .setted(0)),
+            EventPlayer(status: .lost, player: p4, position: .setted(5), points: .setted(10), prizePercentage: .setted(0)),
+            EventPlayer(status: .lost, player: p5, position: .setted(4), points: .setted(12), prizePercentage: .setted(0)),
+            EventPlayer(status: .lost, player: p6, position: .setted(3), points: .setted(15), prizePercentage: .setted(0.1)),
+            EventPlayer(status: .lost, player: p7, position: .setted(2), points: .setted(18), prizePercentage: .setted(0.3)),
+            EventPlayer(status: .won, player: p1, position: .setted(1), points: .setted(25), prizePercentage: .setted(0.6))
         ]
         
         XCTAssertNotNil(ev.winner)
@@ -141,14 +156,24 @@ class EventStoreTests: XCTestCase {
         XCTAssertEqual(newEvent.losers.count, 2)
         
         let losers = [
-            EventPlayer(status: .lost, player: p1, position: .setted(7)),
-            EventPlayer(status: .lost, player: p2, position: .setted(6))
+            EventPlayer(status: .lost,
+                        player: p1,
+                        position: .setted(7),
+                        points: .setted(event.pointsSystem.points(for: 7)),
+                        prizePercentage: .setted(event.prizeSystem.prizePercentage(for: 7))
+            ),
+            EventPlayer(status: .lost,
+                        player: p2,
+                        position: .setted(6),
+                        points: .setted(event.pointsSystem.points(for: 6)),
+                        prizePercentage: .setted(event.prizeSystem.prizePercentage(for: 6))
+            )
         ]
         
         XCTAssertEqual(newEvent.losers.count, losers.count)
         XCTAssertEqual(newEvent.losers, losers)
         XCTAssertEqual(newEvent.players.count, 7)
     }
- 
+    
     
 }

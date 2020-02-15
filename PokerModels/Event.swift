@@ -13,6 +13,9 @@ public struct Event {
     let location: Location
     let date: Date
     
+    let pointsSystem: PointsSystem = FormulaOnePointsSystem()
+    let prizeSystem: PrizeSystem = FirstToThirdPrizeSystem()
+    
     let players: [EventPlayer]
     let actions: [EventAction]
 }

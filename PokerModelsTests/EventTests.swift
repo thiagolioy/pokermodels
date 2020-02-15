@@ -21,15 +21,15 @@ class EventTests: XCTestCase {
         
         let players = [p1, p2, p3]
         
-        let house = Location(address: "Avenida Santo Amaro 3131",
-                             complement: "Apt. 1905",
-                             coordinate: nil)
+        let house = Location(address: "Avenida Santo 20",
+        complement: "Apt. 15",
+        coordinate: nil)
         
         event = Event(
             name: "Thiago's Poker",
             location: house,
             date: Date(),
-            players: players.map{EventPlayer(status: .active, player: $0, position: .notSetted)},
+            players: players.map{EventPlayer(player: $0)},
             actions: []
         )
     }

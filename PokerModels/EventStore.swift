@@ -25,16 +25,29 @@ public struct EventStore {
         let otherPlayers = event.players.filter { $0.player != player }
         let activePlayers = otherPlayers.filter { $0.status == .active}
         
+        var position: Position = .notSetted
+        var points: Points = .notSetted
+        var prizePercentage: PrizePercentage = .notSetted
         
-        var position: EventPlayer.PlayerPosition = .notSetted
         if status == .lost {
-            position = .setted(activePlayers.count + 1)
+            let pos = activePlayers.count + 1
+            position = .setted(pos)
+            points = .setted(event.pointsSystem.points(for: pos))
+            prizePercentage = .setted(event.prizeSystem.prizePercentage(for: pos))
         } else if status == .won {
-            position = .setted(1)
+            let winnerPosition = 1
+            position = .setted(winnerPosition)
+            points = .setted(event.pointsSystem.points(for: winnerPosition))
+            prizePercentage = .setted(event.prizeSystem.prizePercentage(for: winnerPosition))
         }
         
-        let changes = [
-            EventPlayer(status: status, player: player, position: position)
+        let changes: [EventPlayer] = [
+            EventPlayer(status: status,
+                        player: player,
+                        position: position,
+                        points: points,
+                        prizePercentage: prizePercentage
+            )
         ]
         
         let updatedPlayers = otherPlayers + changes
