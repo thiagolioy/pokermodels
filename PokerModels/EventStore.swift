@@ -20,7 +20,27 @@ public struct EventStore {
         )
     }
     
-    private func update(event: Event, player: Player, status: EventPlayer.Status) -> Event {
+    func playerDidLose(player: Player, on event: Event) -> Event {
+        
+        let updatedEvent = update(event: event, player: player, status: .lost)
+        
+        let activePlayers = updatedEvent.players.filter {$0.status == .active}
+        
+        guard activePlayers.count == 1 else {
+            return updatedEvent
+        }
+        
+        let lastActive = activePlayers[0].player
+        
+        return update(event: updatedEvent, player: lastActive, status: .won)
+    }
+    
+    
+}
+
+
+fileprivate extension EventStore {
+    func update(event: Event, player: Player, status: EventPlayer.Status) -> Event {
         
         let otherPlayers = event.players.filter { $0.player != player }
         let activePlayers = otherPlayers.filter { $0.status == .active}
@@ -60,23 +80,5 @@ public struct EventStore {
             actions: event.actions
         )
     }
-    
-    
-    func playerDidLose(player: Player, on event: Event) -> Event {
-        
-        let updatedEvent = update(event: event, player: player, status: .lost)
-        
-        let activePlayers = updatedEvent.players.filter {$0.status == .active}
-        
-        guard activePlayers.count == 1 else {
-            return updatedEvent
-        }
-        
-        let lastActive = activePlayers[0].player
-        
-        
-        return update(event: updatedEvent, player: lastActive, status: .won)
-    }
-    
     
 }
