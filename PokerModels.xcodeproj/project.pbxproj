@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A9CF9F723F9AFCD005BD81D /* PokerCostStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CF9F623F9AFCD005BD81D /* PokerCostStructure.swift */; };
+		0A9CF9F923F9BB30005BD81D /* PaymentDistribuition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CF9F823F9BB30005BD81D /* PaymentDistribuition.swift */; };
+		0A9CF9FB23F9BDD2005BD81D /* PaymentDistribuitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CF9FA23F9BDD2005BD81D /* PaymentDistribuitionTests.swift */; };
 		0AB70CF523F84FFD00CB093A /* PokerModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB70CEB23F84FFD00CB093A /* PokerModels.framework */; };
 		0AB70CFC23F84FFD00CB093A /* PokerModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB70CEE23F84FFD00CB093A /* PokerModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AB70D0623F8506500CB093A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0523F8506500CB093A /* Player.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		0A9CF9F623F9AFCD005BD81D /* PokerCostStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerCostStructure.swift; sourceTree = "<group>"; };
+		0A9CF9F823F9BB30005BD81D /* PaymentDistribuition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDistribuition.swift; sourceTree = "<group>"; };
+		0A9CF9FA23F9BDD2005BD81D /* PaymentDistribuitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDistribuitionTests.swift; sourceTree = "<group>"; };
 		0AB70CEB23F84FFD00CB093A /* PokerModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokerModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AB70CEE23F84FFD00CB093A /* PokerModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokerModels.h; sourceTree = "<group>"; };
 		0AB70CEF23F84FFD00CB093A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				0AB70D2323F8A1BA00CB093A /* Setted.swift */,
 				0AB70D2723F8A6F200CB093A /* PrizeSystem.swift */,
 				0A9CF9F623F9AFCD005BD81D /* PokerCostStructure.swift */,
+				0A9CF9F823F9BB30005BD81D /* PaymentDistribuition.swift */,
 			);
 			path = PokerModels;
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 				0AB70D1523F854A000CB093A /* EventTests.swift */,
 				0AB70D1B23F873B700CB093A /* EventStoreTests.swift */,
 				0AB70D1F23F89A8600CB093A /* PlayerActionTests.swift */,
+				0A9CF9FA23F9BDD2005BD81D /* PaymentDistribuitionTests.swift */,
 			);
 			path = PokerModelsTests;
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9CF9F923F9BB30005BD81D /* PaymentDistribuition.swift in Sources */,
 				0A9CF9F723F9AFCD005BD81D /* PokerCostStructure.swift in Sources */,
 				0AB70D1E23F8986D00CB093A /* EventPlayer.swift in Sources */,
 				0AB70D1023F852B200CB093A /* PokerAction.swift in Sources */,
@@ -264,6 +271,7 @@
 				0AB70D1C23F873B700CB093A /* EventStoreTests.swift in Sources */,
 				0AB70D1623F854A000CB093A /* EventTests.swift in Sources */,
 				0AB70D0823F8509500CB093A /* PlayerTests.swift in Sources */,
+				0A9CF9FB23F9BDD2005BD81D /* PaymentDistribuitionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
