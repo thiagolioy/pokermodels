@@ -12,12 +12,11 @@ protocol PrizeSystem {
     func prizePercentage(for position: Int) -> Double
 }
 
-struct FirstToThirdPrizeSystem: PrizeSystem {
+struct FirstAndSecondPrizeSystem: PrizeSystem {
     
     let prizePercentageStructure = [
-        1:0.60,
-        2:0.30,
-        3:0.10
+        1:0.70,
+        2:0.30
     ]
     
     func prizePercentage(for position: Int) -> Double {

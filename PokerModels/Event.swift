@@ -14,7 +14,7 @@ public struct Event {
     let date: Date
     
     let pointsSystem: PointsSystem = FormulaOnePointsSystem()
-    let prizeSystem: PrizeSystem = FirstToThirdPrizeSystem()
+    let prizeSystem: PrizeSystem = FirstAndSecondPrizeSystem()
     let costStructure: PokerCostStructure = FriendlyPokerCost()
     
     let players: [EventPlayer]

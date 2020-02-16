@@ -288,13 +288,13 @@ class EventStoreTests: XCTestCase {
         
         
         XCTAssertEqual(ev.revenue(for: p1), 0.0)
-        XCTAssertEqual(ev.revenue(for: p2), 60.0)
-        XCTAssertEqual(ev.revenue(for: p3), 360.0)
+        XCTAssertEqual(ev.revenue(for: p2), 0.0)
+        XCTAssertEqual(ev.revenue(for: p3), 420.0)
         XCTAssertEqual(ev.revenue(for: p4), 180.0)
         
         XCTAssertEqual(ev.profit(for: p1), -300.0)
-        XCTAssertEqual(ev.profit(for: p2), -40.0)
-        XCTAssertEqual(ev.profit(for: p3), 210.0)
+        XCTAssertEqual(ev.profit(for: p2), -100.0)
+        XCTAssertEqual(ev.profit(for: p3), 270.0)
         XCTAssertEqual(ev.profit(for: p4), 130.0)
         
     }

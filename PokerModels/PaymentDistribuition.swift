@@ -41,20 +41,29 @@ struct PaymentDistribuition {
             var payerFunds = abs(payer.performance)
             
             while payerFunds != 0 {
+                
                 let stillMissingPayment = profitablePlayers.filter{ !settled.contains($0.player) }
                     .sorted(by: {$0.performance > $1.performance})
+                
                 for profitablePlayer in stillMissingPayment {
                     
-                    if payerFunds >= profitablePlayer.performance {
+                    
+                    let alreadyPayed = transfers.filter({$0.to == profitablePlayer.player})
+                                                .map({$0.amount})
+                                                .reduce(0, +)
+                    let stillNeedsToReceive = abs(profitablePlayer.performance) - alreadyPayed
+                    
+                    
+                    if payerFunds >= stillNeedsToReceive {
                         
-                        print("Player: \(payer.player.name) should pay: \(abs(profitablePlayer.performance)) to: \(profitablePlayer.player.name)")
+                        print("Player: \(payer.player.name) should pay: \(stillNeedsToReceive) to: \(profitablePlayer.player.name)")
                         
-                        payerFunds -= abs(profitablePlayer.performance)
+                        payerFunds -= stillNeedsToReceive
                         settled.append(profitablePlayer.player)
                         let t = Transfer(
                             from: payer.player,
                             to: profitablePlayer.player,
-                            amount: abs(profitablePlayer.performance)
+                            amount: stillNeedsToReceive
                         )
                         transfers.append(t)
                         
@@ -62,22 +71,18 @@ struct PaymentDistribuition {
                         
                         print("Player: \(payer.player.name) should pay: \(payerFunds) to: \(profitablePlayer.player.name)")
                         
-                        payerFunds = 0
                         let t = Transfer(
                             from: payer.player,
                             to: profitablePlayer.player,
-                            amount: abs(payer.performance)
+                            amount: abs(payerFunds)
                         )
                         
-                        let alreadyPayed = transfers.filter({$0.to == profitablePlayer.player})
-                            .map({$0.amount})
-                            .reduce(0, +)
+                        payerFunds = 0
+                        
+                        
                         
                         transfers.append(t)
                         
-                        if alreadyPayed + t.amount == profitablePlayer.performance {
-                            settled.append(profitablePlayer.player)
-                        }
                         
                         //Should Break. No more funds to pay
                         break
