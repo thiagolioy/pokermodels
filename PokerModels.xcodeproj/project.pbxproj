@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A9CF9F723F9AFCD005BD81D /* PokerCostStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9CF9F623F9AFCD005BD81D /* PokerCostStructure.swift */; };
 		0AB70CF523F84FFD00CB093A /* PokerModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB70CEB23F84FFD00CB093A /* PokerModels.framework */; };
 		0AB70CFC23F84FFD00CB093A /* PokerModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB70CEE23F84FFD00CB093A /* PokerModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AB70D0623F8506500CB093A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0523F8506500CB093A /* Player.swift */; };
@@ -21,7 +22,7 @@
 		0AB70D1A23F870D300CB093A /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1923F870D300CB093A /* EventStore.swift */; };
 		0AB70D1C23F873B700CB093A /* EventStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1B23F873B700CB093A /* EventStoreTests.swift */; };
 		0AB70D1E23F8986D00CB093A /* EventPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1D23F8986D00CB093A /* EventPlayer.swift */; };
-		0AB70D2023F89A8600CB093A /* EventActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1F23F89A8600CB093A /* EventActionTests.swift */; };
+		0AB70D2023F89A8600CB093A /* PlayerActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1F23F89A8600CB093A /* PlayerActionTests.swift */; };
 		0AB70D2223F89D3200CB093A /* PointsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D2123F89D3200CB093A /* PointsSystem.swift */; };
 		0AB70D2423F8A1BA00CB093A /* Setted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D2323F8A1BA00CB093A /* Setted.swift */; };
 		0AB70D2823F8A6F200CB093A /* PrizeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D2723F8A6F200CB093A /* PrizeSystem.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A9CF9F623F9AFCD005BD81D /* PokerCostStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerCostStructure.swift; sourceTree = "<group>"; };
 		0AB70CEB23F84FFD00CB093A /* PokerModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokerModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AB70CEE23F84FFD00CB093A /* PokerModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokerModels.h; sourceTree = "<group>"; };
 		0AB70CEF23F84FFD00CB093A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		0AB70D1923F870D300CB093A /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		0AB70D1B23F873B700CB093A /* EventStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreTests.swift; sourceTree = "<group>"; };
 		0AB70D1D23F8986D00CB093A /* EventPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPlayer.swift; sourceTree = "<group>"; };
-		0AB70D1F23F89A8600CB093A /* EventActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventActionTests.swift; sourceTree = "<group>"; };
+		0AB70D1F23F89A8600CB093A /* PlayerActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerActionTests.swift; sourceTree = "<group>"; };
 		0AB70D2123F89D3200CB093A /* PointsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsSystem.swift; sourceTree = "<group>"; };
 		0AB70D2323F8A1BA00CB093A /* Setted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setted.swift; sourceTree = "<group>"; };
 		0AB70D2723F8A6F200CB093A /* PrizeSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeSystem.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				0AB70D2123F89D3200CB093A /* PointsSystem.swift */,
 				0AB70D2323F8A1BA00CB093A /* Setted.swift */,
 				0AB70D2723F8A6F200CB093A /* PrizeSystem.swift */,
+				0A9CF9F623F9AFCD005BD81D /* PokerCostStructure.swift */,
 			);
 			path = PokerModels;
 			sourceTree = "<group>";
@@ -126,7 +129,7 @@
 				0AB70D0723F8509500CB093A /* PlayerTests.swift */,
 				0AB70D1523F854A000CB093A /* EventTests.swift */,
 				0AB70D1B23F873B700CB093A /* EventStoreTests.swift */,
-				0AB70D1F23F89A8600CB093A /* EventActionTests.swift */,
+				0AB70D1F23F89A8600CB093A /* PlayerActionTests.swift */,
 			);
 			path = PokerModelsTests;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9CF9F723F9AFCD005BD81D /* PokerCostStructure.swift in Sources */,
 				0AB70D1E23F8986D00CB093A /* EventPlayer.swift in Sources */,
 				0AB70D1023F852B200CB093A /* PokerAction.swift in Sources */,
 				0AB70D0C23F8528F00CB093A /* EventAction.swift in Sources */,
@@ -260,7 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AB70D2023F89A8600CB093A /* EventActionTests.swift in Sources */,
+				0AB70D2023F89A8600CB093A /* PlayerActionTests.swift in Sources */,
 				0AB70D1C23F873B700CB093A /* EventStoreTests.swift in Sources */,
 				0AB70D1623F854A000CB093A /* EventTests.swift in Sources */,
 				0AB70D0823F8509500CB093A /* PlayerTests.swift in Sources */,

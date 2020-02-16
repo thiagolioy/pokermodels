@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 @testable import PokerModels
 
-class EventActionTests: XCTestCase {
+class PlayerActionTests: XCTestCase {
     
     var event: Event!
     
@@ -43,16 +43,16 @@ class EventActionTests: XCTestCase {
     func testShouldBeEqual() {
         let p1 = Player(name: "Thiago")
         
-        let e1 = EventAction(event: event, player: p1, pokerAction: .buyIn)
-        let e2 = EventAction(event: event, player: p1, pokerAction: .buyIn)
+        let e1 = PlayerAction(player: p1, action: .buyIn)
+        let e2 = PlayerAction(player: p1, action: .buyIn)
         XCTAssertEqual(e1, e2)
     }
     
     func testShouldNotBeEqual() {
         let p1 = Player(name: "Thiago")
         
-        let e1 = EventAction(event: event, player: p1, pokerAction: .buyIn)
-        let e2 = EventAction(event: event, player: p1, pokerAction: .rebuy)
+        let e1 = PlayerAction(player: p1, action: .buyIn)
+        let e2 = PlayerAction(player: p1, action: .rebuy)
         XCTAssertNotEqual(e1, e2)
     }
     

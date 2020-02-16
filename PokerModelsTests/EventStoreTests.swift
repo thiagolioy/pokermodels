@@ -50,8 +50,8 @@ class EventStoreTests: XCTestCase {
     }
     
     func testAddEventAction() {
-        let action = EventAction(event: event, player: event.players[0].player, pokerAction: .buyIn)
-        let newEvent = sut.add(eventAction: action, to: event)
+        let action = PlayerAction(player: event.players[0].player, action: .buyIn)
+        let newEvent = sut.add(playerAction: action, to: event)
         XCTAssertEqual(newEvent.actions.count, 1)
     }
     
@@ -95,8 +95,8 @@ class EventStoreTests: XCTestCase {
         let players = [p1, p2, p3, p4, p5, p6, p7]
         
         let house = Location(address: "Avenida Santo 20",
-        complement: "Apt. 15",
-        coordinate: nil)
+                             complement: "Apt. 15",
+                             coordinate: nil)
         
         event = Event(
             name: "Thiago's Poker",
@@ -149,7 +149,7 @@ class EventStoreTests: XCTestCase {
         let p1 = event.players[0].player
         let p3 = event.players[2].player
         let newEvent = sut.playerDidLose(player: p1, on: event)
-      
+        
         
         let points: Points = newEvent.points(for: p1)
         XCTAssertEqual(points, .setted(6))
@@ -159,30 +159,30 @@ class EventStoreTests: XCTestCase {
     }
     
     func testShouldBeAbleToGetPlayerPrizePercentage() {
-           let p1 = event.players[0].player
-           let p3 = event.players[2].player
-           let newEvent = sut.playerDidLose(player: p1, on: event)
-         
-           
-           let points: PrizePercentage = newEvent.prizePercentage(for: p1)
-           XCTAssertEqual(points, .setted(0.0))
-           
-           let notSettedPoints: PrizePercentage = newEvent.prizePercentage(for: p3)
-           XCTAssertEqual(notSettedPoints, .notSetted)
+        let p1 = event.players[0].player
+        let p3 = event.players[2].player
+        let newEvent = sut.playerDidLose(player: p1, on: event)
+        
+        
+        let points: PrizePercentage = newEvent.prizePercentage(for: p1)
+        XCTAssertEqual(points, .setted(0.0))
+        
+        let notSettedPoints: PrizePercentage = newEvent.prizePercentage(for: p3)
+        XCTAssertEqual(notSettedPoints, .notSetted)
     }
     
     func testShouldBeAbleToGetPlayerPosition() {
-           let p1 = event.players[0].player
-           let p3 = event.players[2].player
-           let newEvent = sut.playerDidLose(player: p1, on: event)
-         
-           
-           let points: Position = newEvent.position(for: p1)
-           XCTAssertEqual(points, .setted(7))
-           
-           let notSettedPoints: Position = newEvent.position(for: p3)
-           XCTAssertEqual(notSettedPoints, .notSetted)
-       }
+        let p1 = event.players[0].player
+        let p3 = event.players[2].player
+        let newEvent = sut.playerDidLose(player: p1, on: event)
+        
+        
+        let points: Position = newEvent.position(for: p1)
+        XCTAssertEqual(points, .setted(7))
+        
+        let notSettedPoints: Position = newEvent.position(for: p3)
+        XCTAssertEqual(notSettedPoints, .notSetted)
+    }
     
     
     func testShouldBeAbleToListTheLosers() {
@@ -215,8 +215,88 @@ class EventStoreTests: XCTestCase {
         XCTAssertEqual(newEvent.players.count, 7)
     }
     
-    func testShouldBeAbleToGetPrizePool() {
-          XCTFail()
-      }
+    func testShouldBeToGetTheCostForAPlayer() {
+        
+        let p1 = Player(name: "Mohamd")
+        let p2 = Player(name: "Felipe")
+        
+        let players = [p1, p2]
+        
+        let playerActions = [
+            PlayerAction(player: p1, action: .buyIn),
+            PlayerAction(player: p2, action: .buyIn),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p1, action: .addOn),
+            PlayerAction(player: p2, action: .addOn),
+        ]
+        
+        
+        let ev = Event(
+            name: "Thiago's Poker",
+            location: event.location,
+            date: event.date,
+            players: players.map{EventPlayer(player: $0)},
+            actions: playerActions
+        )
+        
+        XCTAssertEqual(ev.cost(for: p1), 250)
+        XCTAssertEqual(ev.cost(for: p2), 100)
+        
+    }
+    
+    func testShouldBeToGetTheRevenueForAPlayer() {
+        let p1 = Player(name: "Mohamd")
+        let p2 = Player(name: "Felipe")
+        let p3 = Player(name: "Thiago")
+        let p4 = Player(name: "Joao")
+        
+        let players = [p1, p2, p3, p4]
+        
+        let playerActions = [
+            PlayerAction(player: p1, action: .buyIn),
+            PlayerAction(player: p2, action: .buyIn),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p1, action: .addOn),
+            PlayerAction(player: p2, action: .addOn),
+            PlayerAction(player: p3, action: .buyIn),
+            PlayerAction(player: p1, action: .rebuy),
+            PlayerAction(player: p3, action: .rebuy),
+            PlayerAction(player: p3, action: .addOn),
+            PlayerAction(player: p4, action: .buyIn)
+        ]
+        
+        
+        var ev = Event(
+            name: "Thiago's Poker",
+            location: event.location,
+            date: event.date,
+            players: players.map{EventPlayer(player: $0)},
+            actions: playerActions
+        )
+        
+        let store = EventStore()
+        
+        ev = store.playerDidLose(player: p1, on: ev)
+        ev = store.playerDidLose(player: p2, on: ev)
+        ev = store.playerDidLose(player: p4, on: ev)
+        
+        XCTAssertEqual(ev.prizePool(), 600)
+        
+        
+        XCTAssertEqual(ev.revenue(for: p1), 0.0)
+        XCTAssertEqual(ev.revenue(for: p2), 60.0)
+        XCTAssertEqual(ev.revenue(for: p3), 360.0)
+        XCTAssertEqual(ev.revenue(for: p4), 180.0)
+        
+        XCTAssertEqual(ev.profit(for: p1), -300.0)
+        XCTAssertEqual(ev.profit(for: p2), -40.0)
+        XCTAssertEqual(ev.profit(for: p3), 210.0)
+        XCTAssertEqual(ev.profit(for: p4), 130.0)
+        
+    }
     
 }

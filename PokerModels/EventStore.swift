@@ -10,13 +10,13 @@ import Foundation
 
 public struct EventStore {
     
-    func add(eventAction: EventAction, to event: Event) -> Event {
+    func add(playerAction: PlayerAction, to event: Event) -> Event {
         return Event(
             name: event.name,
             location: event.location,
             date: event.date,
             players: event.players,
-            actions: event.actions + [eventAction]
+            actions: event.actions + [playerAction]
         )
     }
     

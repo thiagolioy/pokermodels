@@ -8,16 +8,14 @@
 
 import Foundation
 
-public struct EventAction {
-    let event: Event
+public struct PlayerAction {
     let player: Player
-    let pokerAction: PokerAction
+    let action: PokerAction
 }
 
-extension EventAction: Equatable {}
+extension PlayerAction: Equatable {}
 
-public func ==(lhs: EventAction, rhs: EventAction) -> Bool {
-    return lhs.event == rhs.event &&
-        lhs.player == rhs.player &&
-        lhs.pokerAction == rhs.pokerAction
+public func ==(lhs: PlayerAction, rhs: PlayerAction) -> Bool {
+    return lhs.player == rhs.player &&
+        lhs.action == rhs.action
 }

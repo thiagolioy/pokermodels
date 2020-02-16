@@ -15,9 +15,10 @@ public struct Event {
     
     let pointsSystem: PointsSystem = FormulaOnePointsSystem()
     let prizeSystem: PrizeSystem = FirstToThirdPrizeSystem()
+    let costStructure: PokerCostStructure = FriendlyPokerCost()
     
     let players: [EventPlayer]
-    let actions: [EventAction]
+    let actions: [PlayerAction]
 }
 
 extension Event: Equatable {}
@@ -64,5 +65,39 @@ extension Event {
         }
         return percentage
     }
+}
+
+extension Event {
+    func cost(for player: Player) -> Double {
+        let costFunction: PokerCostStructure = costStructure
+        return actions.filter({ $0.player == player })
+            .map({ costFunction.cost(of: $0.action) })
+            .reduce(0.0, +)
+    }
     
+    func prizePool() -> Double {
+        let costFunction: PokerCostStructure = costStructure
+        return actions.map({ costFunction.cost(of: $0.action) })
+            .reduce(0.0, +)
+    }
+    
+    func revenue(for player: Player) -> Double {
+        
+        let pool = prizePool()
+        
+        guard let eventPlayer = players.filter({$0.player == player}).first else {
+            fatalError("Must be a registered player on the event")
+        }
+        
+        switch eventPlayer.prizePercentage {
+        case .setted(let percentage):
+            return pool * percentage
+        case .notSetted:
+            return 0.0
+        }
+    }
+    
+    func profit(for player: Player) -> Double {
+        return revenue(for: player) - cost(for: player)
+    }
 }

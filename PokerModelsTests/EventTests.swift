@@ -67,7 +67,7 @@ class EventTests: XCTestCase {
             location: event.location,
             date: Date(),
             players: event.players,
-            actions: [ EventAction(event: event, player: event.players[0].player, pokerAction: .buyIn) ]
+            actions: [ PlayerAction(player: event.players[0].player, action: .buyIn) ]
         )
         XCTAssertNotEqual(event, ev3)
     }
