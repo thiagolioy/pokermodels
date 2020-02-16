@@ -16,7 +16,6 @@
 		0AB70D0C23F8528F00CB093A /* EventAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0B23F8528F00CB093A /* EventAction.swift */; };
 		0AB70D1023F852B200CB093A /* PokerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D0F23F852B200CB093A /* PokerAction.swift */; };
 		0AB70D1223F852E700CB093A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1123F852E700CB093A /* Location.swift */; };
-		0AB70D1423F8530200CB093A /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1323F8530200CB093A /* Championship.swift */; };
 		0AB70D1623F854A000CB093A /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1523F854A000CB093A /* EventTests.swift */; };
 		0AB70D1823F86BA500CB093A /* PlayerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1723F86BA500CB093A /* PlayerStore.swift */; };
 		0AB70D1A23F870D300CB093A /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB70D1923F870D300CB093A /* EventStore.swift */; };
@@ -51,7 +50,6 @@
 		0AB70D0B23F8528F00CB093A /* EventAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAction.swift; sourceTree = "<group>"; };
 		0AB70D0F23F852B200CB093A /* PokerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerAction.swift; sourceTree = "<group>"; };
 		0AB70D1123F852E700CB093A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		0AB70D1323F8530200CB093A /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
 		0AB70D1523F854A000CB093A /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		0AB70D1723F86BA500CB093A /* PlayerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStore.swift; sourceTree = "<group>"; };
 		0AB70D1923F870D300CB093A /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				0AB70D0B23F8528F00CB093A /* EventAction.swift */,
 				0AB70D0F23F852B200CB093A /* PokerAction.swift */,
 				0AB70D1123F852E700CB093A /* Location.swift */,
-				0AB70D1323F8530200CB093A /* Championship.swift */,
 				0AB70D1723F86BA500CB093A /* PlayerStore.swift */,
 				0AB70D1923F870D300CB093A /* EventStore.swift */,
 				0AB70D1D23F8986D00CB093A /* EventPlayer.swift */,
@@ -250,7 +247,6 @@
 				0AB70D0C23F8528F00CB093A /* EventAction.swift in Sources */,
 				0AB70D1A23F870D300CB093A /* EventStore.swift in Sources */,
 				0AB70D0A23F8528500CB093A /* Event.swift in Sources */,
-				0AB70D1423F8530200CB093A /* Championship.swift in Sources */,
 				0AB70D1223F852E700CB093A /* Location.swift in Sources */,
 				0AB70D2423F8A1BA00CB093A /* Setted.swift in Sources */,
 				0AB70D1823F86BA500CB093A /* PlayerStore.swift in Sources */,
