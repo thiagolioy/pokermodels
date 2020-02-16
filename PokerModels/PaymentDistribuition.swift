@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Transfer {
+struct Transaction {
     let from: Player
     let to: Player
     let amount: Double
@@ -21,83 +21,80 @@ struct PlayerPerformance {
 
 struct PaymentDistribuition {
     
-    func calculate(for event: Event) -> [Transfer] {
+    func calculate(for event: Event) -> [Transaction] {
         
         let performances: [PlayerPerformance] = event.players.map {
             PlayerPerformance(player: $0.player, performance: event.profit(for: $0.player))
         }
         
-        let profitablePlayers = performances.filter({$0.performance > 0})
-            .sorted(by: {$0.performance > $1.performance})
+        let receivers = performances.filter({$0.performance > 0})
         let payers = performances.filter({$0.performance < 0})
-            .sorted(by: {$0.performance < $1.performance})
-        
-        var transfers: [Transfer] = []
-        
-
-        var settled: [Player] = []
-        for payer in payers {
-            
-            var payerFunds = abs(payer.performance)
-            
-            while payerFunds != 0 {
-                
-                let stillMissingPayment = profitablePlayers.filter{ !settled.contains($0.player) }
-                    .sorted(by: {$0.performance > $1.performance})
-                
-                for profitablePlayer in stillMissingPayment {
-                    
-                    
-                    let alreadyPayed = transfers.filter({$0.to == profitablePlayer.player})
-                                                .map({$0.amount})
-                                                .reduce(0, +)
-                    let stillNeedsToReceive = abs(profitablePlayer.performance) - alreadyPayed
-                    
-                    
-                    if payerFunds >= stillNeedsToReceive {
-                        
-                        print("Player: \(payer.player.name) should pay: \(stillNeedsToReceive) to: \(profitablePlayer.player.name)")
-                        
-                        payerFunds -= stillNeedsToReceive
-                        settled.append(profitablePlayer.player)
-                        let t = Transfer(
-                            from: payer.player,
-                            to: profitablePlayer.player,
-                            amount: stillNeedsToReceive
-                        )
-                        transfers.append(t)
-                        
-                    } else {
-                        
-                        print("Player: \(payer.player.name) should pay: \(payerFunds) to: \(profitablePlayer.player.name)")
-                        
-                        let t = Transfer(
-                            from: payer.player,
-                            to: profitablePlayer.player,
-                            amount: abs(payerFunds)
-                        )
-                        
-                        payerFunds = 0
-                        
-                        
-                        
-                        transfers.append(t)
-                        
-                        
-                        //Should Break. No more funds to pay
-                        break
-                    }
-                 
-                }
-                
-                
-            }
-            
-            
-        }
-        
-        return transfers
+           
+        return transactions(from: payers, to: receivers)
     }
     
+}
+
+fileprivate extension PaymentDistribuition {
     
+    func transactions(from payers: [PlayerPerformance], to receivers: [PlayerPerformance]) -> [Transaction] {
+           
+           //Make sure the collections are sorted
+           let payers = payers.sorted(by: {$0.performance < $1.performance})
+           let receivers = receivers.sorted(by: {$0.performance > $1.performance})
+           
+           var transactions: [Transaction] = []
+           
+           // Settled Collection will be used to remove people
+           // That already got pay from the inner loop
+           var settled: [Player] = []
+           
+           for payer in payers {
+               
+               var payerFunds = abs(payer.performance)
+               
+               // Remove people that already got paid from the list
+               let stillMissingPayment = receivers.filter{ !settled.contains($0.player) }
+                                                  .sorted(by: {$0.performance > $1.performance})
+               
+               
+               for receiver in stillMissingPayment {
+                   
+                   let alreadyPayed = transactions.filter({$0.to == receiver.player})
+                                                  .map({$0.amount})
+                                                  .reduce(0, +)
+                   let stillNeedsToReceive = abs(receiver.performance) - alreadyPayed
+                   
+                   if payerFunds >= stillNeedsToReceive {
+                   
+                       payerFunds -= stillNeedsToReceive
+                       settled.append(receiver.player)
+                       let t = Transaction(
+                           from: payer.player,
+                           to: receiver.player,
+                           amount: stillNeedsToReceive
+                       )
+                       transactions.append(t)
+                       
+                   } else {
+                       
+                       let t = Transaction(
+                           from: payer.player,
+                           to: receiver.player,
+                           amount: abs(payerFunds)
+                       )
+                       transactions.append(t)
+                       
+                       payerFunds = 0
+                       break
+                   }
+                   
+               }
+               
+               
+           }
+           
+           return transactions
+       }
+
 }
