@@ -10,7 +10,7 @@ import Foundation
 
 public struct EventStore {
     
-    func add(playerAction: PlayerAction, to event: Event) -> Event {
+    public func add(playerAction: PlayerAction, to event: Event) -> Event {
         return Event(
             name: event.name,
             location: event.location,
@@ -20,7 +20,7 @@ public struct EventStore {
         )
     }
     
-    func playerDidLose(player: Player, on event: Event) -> Event {
+    public func playerDidLose(player: Player, on event: Event) -> Event {
         
         let updatedEvent = update(event: event, player: player, status: .lost)
         
@@ -45,9 +45,9 @@ fileprivate extension EventStore {
         let otherPlayers = event.players.filter { $0.player != player }
         let activePlayers = otherPlayers.filter { $0.status == .active}
         
-        var position: Position = .notSetted
-        var points: Points = .notSetted
-        var prizePercentage: PrizePercentage = .notSetted
+        var position: EventPlayer.Position = .notSetted
+        var points: EventPlayer.Points = .notSetted
+        var prizePercentage: EventPlayer.PrizePercentage = .notSetted
         
         if status == .lost {
             let pos = activePlayers.count + 1

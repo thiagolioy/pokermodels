@@ -34,7 +34,7 @@ class PaymentDistribuitionTests: XCTestCase {
             PlayerAction(player: p4, action: .buyIn)
         ]
         
-        let loc = Location(address: "Rua das pedras", complement: "92", coordinate: nil)
+        let loc = Location(address: "Rua das pedras", complement: "92")
         
         var ev = Event(
             name: "Thiago's Poker",
@@ -104,7 +104,7 @@ class PaymentDistribuitionTests: XCTestCase {
             PlayerAction(player: p7, action: .addOn)
         ]
         
-        let loc = Location(address: "Rua das pedras", complement: "92", coordinate: nil)
+        let loc = Location(address: "Rua das pedras", complement: "92")
         
         var ev = Event(
             name: "Thiago's Poker",

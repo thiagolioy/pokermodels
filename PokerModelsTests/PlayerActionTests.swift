@@ -24,8 +24,7 @@ class PlayerActionTests: XCTestCase {
         let players = [p1, p2, p3]
         
         let house = Location(address: "Avenida Santo 20",
-                             complement: "Apt. 15",
-                             coordinate: nil)
+                             complement: "Apt. 15")
         
         event = Event(
             name: "Thiago's Poker",

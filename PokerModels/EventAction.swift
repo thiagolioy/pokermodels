@@ -11,6 +11,11 @@ import Foundation
 public struct PlayerAction {
     let player: Player
     let action: PokerAction
+    
+    public init(player: Player, action: PokerAction) {
+        self.player = player
+        self.action = action
+    }
 }
 
 extension PlayerAction: Equatable {}

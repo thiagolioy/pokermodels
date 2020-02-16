@@ -9,30 +9,34 @@
 import Foundation
 
 
-typealias Position = Setted<Int>
-typealias Points = Setted<Int>
-typealias PrizePercentage = Setted<Double>
 
 public struct EventPlayer {
-    enum Status {
+
+    public typealias Position = Setted<Int>
+    public typealias Points = Setted<Int>
+    public typealias PrizePercentage = Setted<Double>
+
+    public enum Status {
         case won, active, lost
     }
     
-    let status: Status
-    let player: Player
-    let position: Position
-    let points: Points
-    let prizePercentage: PrizePercentage
-}
-
-extension EventPlayer {
-    init(player: Player) {
-        status = .active
+    public let status: Status
+    public let player: Player
+    public let position: Position
+    public let points: Points
+    public let prizePercentage: PrizePercentage
+    
+    public init(status: EventPlayer.Status = .active, player: Player,
+                position: EventPlayer.Position = .notSetted,
+                points: EventPlayer.Points = .notSetted,
+                prizePercentage: EventPlayer.PrizePercentage = .notSetted) {
+        self.status = status
         self.player = player
-        position = .notSetted
-        points = .notSetted
-        prizePercentage = .notSetted
+        self.position = position
+        self.points = points
+        self.prizePercentage = prizePercentage
     }
+    
 }
 
 extension EventPlayer: Equatable {}

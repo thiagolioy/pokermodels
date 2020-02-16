@@ -13,6 +13,12 @@ public struct Location {
     let address: String
     let complement: String
     let coordinate: CLLocationCoordinate2D?
+    
+    public init(address: String, complement: String, coordinate: CLLocationCoordinate2D? = nil) {
+        self.address = address
+        self.complement = complement
+        self.coordinate = coordinate
+    }
 }
 
 extension Location: Equatable {}

@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol PointsSystem {
+public protocol PointsSystem {
     func points(for position: Int) -> Int
 }
 
-struct FormulaOnePointsSystem: PointsSystem {
+public struct FormulaOnePointsSystem: PointsSystem {
     
     let pointsStructure = [
         1:25,
@@ -27,7 +27,9 @@ struct FormulaOnePointsSystem: PointsSystem {
         10:1
     ]
     
-    func points(for position: Int) -> Int {
+    public init() {}
+    
+    public func points(for position: Int) -> Int {
         guard let points = pointsStructure[position] else {
             return 0
         }

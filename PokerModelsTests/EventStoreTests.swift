@@ -26,8 +26,7 @@ class EventStoreTests: XCTestCase {
         let players = [p1, p2, p3, p4, p5, p6, p7]
         
         let house = Location(address: "Avenida Santo 20",
-                             complement: "Apt. 15",
-                             coordinate: nil)
+                             complement: "Apt. 15")
         
         event = Event(
             name: "Thiago's Poker",
@@ -95,8 +94,7 @@ class EventStoreTests: XCTestCase {
         let players = [p1, p2, p3, p4, p5, p6, p7]
         
         let house = Location(address: "Avenida Santo 20",
-                             complement: "Apt. 15",
-                             coordinate: nil)
+                             complement: "Apt. 15")
         
         event = Event(
             name: "Thiago's Poker",
@@ -151,10 +149,10 @@ class EventStoreTests: XCTestCase {
         let newEvent = sut.playerDidLose(player: p1, on: event)
         
         
-        let points: Points = newEvent.points(for: p1)
+        let points: EventPlayer.Points = newEvent.points(for: p1)
         XCTAssertEqual(points, .setted(6))
         
-        let notSettedPoints: Points = newEvent.points(for: p3)
+        let notSettedPoints: EventPlayer.Points = newEvent.points(for: p3)
         XCTAssertEqual(notSettedPoints, .notSetted)
     }
     
@@ -164,10 +162,10 @@ class EventStoreTests: XCTestCase {
         let newEvent = sut.playerDidLose(player: p1, on: event)
         
         
-        let points: PrizePercentage = newEvent.prizePercentage(for: p1)
+        let points: EventPlayer.PrizePercentage = newEvent.prizePercentage(for: p1)
         XCTAssertEqual(points, .setted(0.0))
         
-        let notSettedPoints: PrizePercentage = newEvent.prizePercentage(for: p3)
+        let notSettedPoints: EventPlayer.PrizePercentage = newEvent.prizePercentage(for: p3)
         XCTAssertEqual(notSettedPoints, .notSetted)
     }
     
@@ -177,10 +175,10 @@ class EventStoreTests: XCTestCase {
         let newEvent = sut.playerDidLose(player: p1, on: event)
         
         
-        let points: Position = newEvent.position(for: p1)
+        let points: EventPlayer.Position = newEvent.position(for: p1)
         XCTAssertEqual(points, .setted(7))
         
-        let notSettedPoints: Position = newEvent.position(for: p3)
+        let notSettedPoints: EventPlayer.Position = newEvent.position(for: p3)
         XCTAssertEqual(notSettedPoints, .notSetted)
     }
     

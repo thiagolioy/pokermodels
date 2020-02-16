@@ -10,13 +10,15 @@ import Foundation
 
 
 
-protocol PokerCostStructure {
+public protocol PokerCostStructure {
     func cost(of action: PokerAction) -> Double
 }
 
-struct FriendlyPokerCost: PokerCostStructure {
+public struct FriendlyPokerCost: PokerCostStructure {
     
-    func cost(of action: PokerAction) -> Double {
+    public init() {}
+    
+    public func cost(of action: PokerAction) -> Double {
         switch action {
         case .buyIn, .rebuy, .addOn:
             return 50.0
