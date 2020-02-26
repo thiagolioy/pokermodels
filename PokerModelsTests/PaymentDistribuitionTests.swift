@@ -133,6 +133,91 @@ class PaymentDistribuitionTests: XCTestCase {
         XCTAssertEqual(transferTotal, 700.0)
     }
     
+    func testShouldCalculatePaymentDistributionMoreComplicatedEventMohaLair() {
+        let moha = Player(name: "Moha")
+        let kaique = Player(name: "Kaique")
+        let lioy = Player(name: "Lioy")
+        let jonas = Player(name: "Jonas")
+        let lima = Player(name: "Lima")
+        let igarashi = Player(name: "Igarashi")
+        let saba = Player(name: "Saba")
+        let paiLima = Player(name: "PaiLima")
+        
+        let players = [moha, kaique, lioy, jonas, lima, igarashi, saba, paiLima]
+        
+        let playerActions = [
+            PlayerAction(player: moha, action: .buyIn),
+            PlayerAction(player: moha, action: .rebuy),
+            PlayerAction(player: moha, action: .rebuy),
+            PlayerAction(player: moha, action: .addOn),
+            
+            PlayerAction(player: kaique, action: .buyIn),
+            PlayerAction(player: kaique, action: .rebuy),
+            PlayerAction(player: kaique, action: .rebuy),
+            PlayerAction(player: kaique, action: .addOn),
+            
+            PlayerAction(player: lioy, action: .buyIn),
+            PlayerAction(player: lioy, action: .rebuy),
+            PlayerAction(player: lioy, action: .addOn),
+            
+            PlayerAction(player: jonas, action: .buyIn),
+            PlayerAction(player: jonas, action: .addOn),
+            
+            PlayerAction(player: lima, action: .buyIn),
+            PlayerAction(player: lima, action: .addOn),
+            
+            PlayerAction(player: igarashi, action: .buyIn),
+            PlayerAction(player: igarashi, action: .rebuy),
+            PlayerAction(player: igarashi, action: .rebuy),
+            PlayerAction(player: igarashi, action: .rebuy),
+            PlayerAction(player: igarashi, action: .addOn),
+            
+            PlayerAction(player: saba, action: .buyIn),
+            PlayerAction(player: saba, action: .rebuy),
+            PlayerAction(player: saba, action: .rebuy),
+            PlayerAction(player: saba, action: .rebuy),
+            PlayerAction(player: saba, action: .rebuy),
+            PlayerAction(player: saba, action: .addOn),
+            
+            PlayerAction(player: paiLima, action: .buyIn),
+            PlayerAction(player: paiLima, action: .rebuy),
+            PlayerAction(player: paiLima, action: .rebuy),
+            PlayerAction(player: paiLima, action: .rebuy),
+            PlayerAction(player: paiLima, action: .addOn),
+            
+        ]
+        
+        let loc = Location(address: "Casa Moha", complement: "80")
+        
+        var ev = Event(
+            name: "Etapa 2 - Moha Lair",
+            location: loc,
+            date: Date(),
+            players: players.map{EventPlayer(player: $0)},
+            actions: playerActions
+        )
+        
+        let store = EventStore()
+        
+        ev = store.playerDidLose(player: lima, on: ev)
+        ev = store.playerDidLose(player: moha, on: ev)
+        ev = store.playerDidLose(player: paiLima, on: ev)
+        ev = store.playerDidLose(player: igarashi, on: ev)
+        ev = store.playerDidLose(player: kaique, on: ev)
+        ev = store.playerDidLose(player: jonas, on: ev)
+        ev = store.playerDidLose(player: lioy, on: ev)
+        
+        let dist = PaymentDistribuition()
+        
+        let transfers = dist.calculate(for: ev)
+        
+        XCTAssertEqual(transfers.count, 7)
+        
+        transfers.forEach { print("\($0.from.name) transferir para \($0.to.name) valor de R$\($0.amount)") }
+        
+        let transferTotal = transfers.map({$0.amount}).reduce(0, +)
+        XCTAssertEqual(transferTotal, 1100)
+    }
     
 }
 
