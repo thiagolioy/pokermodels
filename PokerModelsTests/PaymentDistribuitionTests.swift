@@ -213,7 +213,17 @@ class PaymentDistribuitionTests: XCTestCase {
         
         XCTAssertEqual(transfers.count, 7)
         
-        transfers.forEach { print("\($0.from.name) transferir para \($0.to.name) valor de R$\($0.amount)") }
+        let expectedTransfers = [
+            Transaction(from: paiLima, to: saba, amount: 250),
+            Transaction(from: igarashi, to: saba, amount: 250),
+            Transaction(from: moha, to: saba, amount: 200),
+            Transaction(from: kaique, to: saba, amount: 85),
+            Transaction(from: kaique, to: lioy, amount: 115),
+            Transaction(from: lima, to: lioy, amount: 100),
+            Transaction(from: jonas, to: lioy, amount: 100)
+        ]
+        
+        XCTAssertEqual(transfers, expectedTransfers)
         
         let transferTotal = transfers.map({$0.amount}).reduce(0, +)
         XCTAssertEqual(transferTotal, 1100)

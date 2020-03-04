@@ -14,6 +14,14 @@ struct Transaction {
     let amount: Double
 }
 
+extension Transaction: Equatable {}
+
+func ==(lhs: Transaction, rhs: Transaction) -> Bool {
+    return lhs.from == rhs.from &&
+        lhs.to == rhs.to &&
+        lhs.amount == rhs.amount
+}
+
 struct PlayerPerformance {
     let player: Player
     let performance: Double
